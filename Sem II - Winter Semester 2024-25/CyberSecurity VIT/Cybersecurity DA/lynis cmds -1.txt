@@ -1,0 +1,28 @@
+sudo apt update		sudo apt install lynis
+
+lynis —version		lynis --help
+
+
+sudo lynis audit system		# Running a full Security Check
+
+sudo lynis show report > lynis-security-report.txt	# Export Generated Report
+
+
+By default, Lynis will:
+
+Save the report in: 	cat /var/log/lynis-report.dat
+
+Save the log in:	 cat /var/log/lynis.log
+
+
+
+SPECIFIC TESTS
+
+sudo lynis audit system --tests-from-group malware	# For Malware
+
+
+sudo lynis audit system --tests-from-group firewall	# For firewall checks
+
+
+sudo lynis audit system --tests-from-group authentication	# For login and SSH configs:
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Welcome to LearnKode - A code learning platform</title>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>-->
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div>
+         <div  ng-app="myApp" ng-controller="sortCtrl">
+            <button ng-click="sortBy('regno')">Sort by RegNo</button>
+            <button ng-click="sortBy('name')">Sort by Name</button>
+            <button ng-click="sortArray()">Sort Array</button>
+            <button ng-click="sortStringArray()">Sort String Array</button>
+            <p>Sorting Objects By <span ng-bind = "sortParam | uppercase"></span>!</p>            
+            <ul>
+                <li ng-repeat = "x in enrollment | orderBy:sortParam">{{x.regno +","+x.name}}</li>
+            </ul>
+            <div>
+                <ul>
+                    <li ng-repeat = "x in decimals">{{x}}</li>
+                </ul>
+                <ul>
+                    <!--<li ng-repeat = "lang in languages">{{lang.name+"-"+lang.key}}</li>-->
+                    <li ng-repeat = "lang in languages">{{lang}}</li>
+                </ul>
+            </div>
+        </div>        
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("sortCtrl", function($scope) {
+            $scope.decimals=[12.5,11.14,5.18,9.0];
+            $scope.languages = [ "Turkish","German","English","Hindi","Spanish","Telugu"];
+            /*{ name: 'Turkish', key:3 },
+            { name: 'German', key:3 },
+    		{ name: 'English', key:2 },
+   			{ name: 'Hindi', key:3 },
+            { name: 'Spanish',key:2},
+            { name: 'Telugu',key:1 }
+             ]; */
+            $scope.enrollment=[
+                {regno:'20MBE0038',name:'Jacob'},
+                {regno:'20MBE0031',name:'John'},
+                {regno:'20MBE0033',name:'Jerald'},
+                {regno:'20MBE0035',name:'James'},
+                {regno:'20MBE0030',name:'Jemal'},
+            ];
+            $scope.sortBy=  function(param){
+                $scope.sortParam = param;
+            }
+            $scope.sortArray=  function(){
+                $scope.decimals.sort(function(a,b){
+                    return b-a;
+                });
+                //$scope.decimals.sort();
+            }
+            $scope.sortStringArray=  function(){
+                //$scope.languages.sort().reverse();//Descending
+                $scope.languages.sort();//Ascending
+            }
+        });
+        
+        </script>
+</body>
+</html>

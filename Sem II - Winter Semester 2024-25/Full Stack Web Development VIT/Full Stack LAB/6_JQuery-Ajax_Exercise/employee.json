@@ -1,0 +1,28 @@
+{
+    "employees": [
+        {
+            "username": "john_doe",
+            "name": "John Doe",
+            "age": 28,
+            "email": "john.doe@example.com"
+        },
+        {
+            "username": "jane_smith",
+            "name": "Jane Smith",
+            "age": 32,
+            "email": "jane.smith@example.com"
+        },
+        {
+            "username": "mike_jones",
+            "name": "Mike Jones",
+            "age": 40,
+            "email": "mike.jones@example.com"
+        },
+        {
+            "username": "sara_lee",
+            "name": "Sara Lee",
+            "age": 25,
+            "email": "sara.lee@example.com"
+        }
+    ]
+}

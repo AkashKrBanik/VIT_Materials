@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+   
+$(document).ready(function(){
+   $("#hide").click(function(){
+      $("#table1").hide();
+  });
+  $("#show").click(function(){
+      $("#table1").show();
+  });
+
+  
+  $("ul").click(function(){
+    alert("It is an Unordered List");
+    //$("this").hide();    
+  });
+  
+  $("form").submit(function(){
+    $("tr:even").css("background-color", "blue");
+  //alert("Submitted");
+});
+
+//part b
+$("input").focus(function(){
+   $(this).css("background-color","cyan");
+});
+//part c
+$("input").blur(function(){
+   $(this).css("background-color","pink");
+});
+//part d
+$("#check").change(function(){    
+    if($(this).is(":checked")){
+        const address = $("#tempaddress").val();                 
+        //alert("checked "+$('#tempaddress').val());
+        $("#permaddress").val(address);
+    }else{
+        $("#permaddress").val("");
+    }
+});
+//Part a
+$("table tr:odd").css({"background-color":"blue"});
+
+});
+
+</script>
+</head>
+<body>
+
+   <form name = "myForm" onsubmit = "return(validate());">
+      <table cellspacing = "2" cellpadding = "2" border = "1" id="table1">
+         
+         <tr>
+            <td align = "right">Name</td>
+            <td><input type = "text" name = "Name" /></td>
+         </tr>
+         <tr>
+            <td align = "right">Register#</td>
+            <td><input type = "text" name = "RegisterNo" /></td>
+         </tr>
+         <tr>
+            <td align = "right">Date of Birth</td>
+            <td><input type = "Date" name = "DoB" /></td>
+         </tr>
+         <tr>
+            <td align = "right">Programme#</td>
+            <td><input type = "text" name = "Programme" /></td>
+         </tr>
+         <tr>
+            <td align = "right">EMail</td>
+            <td><!--<input type = "text" id="EMail" name = "EMail" onblur="validateEmailFormat()"/>-->
+               <input type = "text" id="EMail" name = "EMail"/>
+            </td>
+         </tr>
+         
+         <tr>
+            <td align = "right">Phone#</td>
+            <td><input type = "number" name = "phone" /></td>
+         </tr>
+         <tr>
+            <td align = "right">TemporaryAddress</td>
+            <td><input type = "text" name = "tempaddress" id="tempaddress" /></td>
+         </tr>
+         <tr>
+             <td align = "right">Permanent address is same as Temporary  address</td>
+             <td><input type = "checkbox" id = "check" onchange = "copyAddress()"> </td>
+          </tr>
+         <tr>
+            <td align = "right">PermanentAddress</td>
+            <td><input type = "text" name = "permaddress" id="permaddress"/></td>
+         </tr>
+         
+          
+                   
+         <tr>
+            <td align = "right"></td>
+            <td><input type = "button" id="hide" value = "Hide" /></td>
+         </tr>
+         
+         
+      </table>
+      <input type = "submit" value = "Show" id="show"/>
+   </form>      
+   <div id="output"></div>
+</body>
+</body>
+</html>
+

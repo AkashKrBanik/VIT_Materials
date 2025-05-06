@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Welcome to LearnKode - A code learning platform</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp2" ng-controller="displayCtrl">
+            <button ng-click="display()">Show/Hide</button>
+            <div ng-show="data">
+                <h1>Food</h1>
+                    <div>Milk</div>
+                    <div>Butter</div>
+                    <div>Bread</div>
+            </div>
+</div>
+<script>
+var app2= angular.module("myApp2", []);
+        app2.controller("displayCtrl", function($scope) {
+            $scope.data=false;
+            
+            $scope.display=function(){
+            $scope.data=!$scope.data;
+            }
+        });
+    </script>
+    </body>
+    </html>

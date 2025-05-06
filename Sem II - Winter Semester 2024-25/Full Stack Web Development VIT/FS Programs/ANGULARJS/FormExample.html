@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp2" ng-controller="displayCtrl">
+  <form novalidate ng-submit="display()">
+    Check to show a header:
+    Check/Uncheck here:<input type="checkbox" ng-model="myVar"><br><br><br>
+    Enter Email:<input type="email" ng-model="myEmail"><br><br><br>
+    <input type="submit" value="Submit"><br><br>
+    Enter Name:<input type="text" ng-model="personName"> <br><br><br>
+    Select Gender:<input type="radio" ng-model="gender" value="male">Male
+    <input type="radio" ng-model="gender" value="female">FeMale
+    Select Preferred Course:<select ng-model="course">
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="c++">C++</option>
+    </select>
+  </form>
+  <h1 ng-show="myVar">Email Id:={{myEmail}}</h1>
+  <p> <span ng-bind="output"></span>!</p>         
+  CHECK BOX VAL:{{myVar}}
+  <div ng-switch="gender">
+    <div ng-switch-when="male"><h1>Mr.{{personName}}, Welcome!!!</h1></div>
+    <div ng-switch-when="female"><h1>Ms.{{personName}}, Welcome!!!</h1></div>
+  </div>
+  <div ng-switch="course">
+    <div ng-switch-when="java"><h1>Java is an Object Oriented Language</h1></div>
+    <div ng-switch-when="python"><h1>Python witht plenty of libraries</div>
+    <div ng-switch-when="c++"><h1>C++ -Friend Functions</h1></div>
+  </div>
+</div>
+
+
+<p>The header's ng-show attribute is set to true when the checkbox is checked.</p>
+<script>
+var app2= angular.module("myApp2", []);
+app2.controller("displayCtrl", function($scope) {
+    
+            $scope.display=function(){
+                alert("Email"+$scope.myEmail);
+                $scope.output="Successfully Submitted!!!";
+            }
+        });
+</script>
+</body>
+</html>

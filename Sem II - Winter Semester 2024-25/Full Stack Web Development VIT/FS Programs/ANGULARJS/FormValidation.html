@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
+<body ng-app="">
+
+<p>Try writing in the input field:</p>
+
+<form name="myForm">
+<p>MyInput:<input name="myInput" ng-model="myInput" required>
+   <span ng-show="myForm.myInput.$touched && myForm.myInput.$invalid">
+        Enter your input</span></p>
+<input type="text" name="mytext" ng-model="mytext" value="value" required>
+<input name = "searchText" ng-model="searchText" type="text" ng-init="searchText='your text'" required/>
+</form>
+
+<p>The input's valid state is:</p>
+<h1>{{myForm.myInput.$valid}}</h1>
+<h1>{{myForm.mytext.$valid}}</h1>
+<h1>{{myForm.searchText.$valid}}</h1>
+<p>Input Element States</p>
+<h2>Untouched->{{myForm.myInput.$untouched}}</h2><!--true!,<Enter Value>false-->
+<h2>Touched->{{myForm.myInput.$touched}}</h2><!--false!,true-->
+<h2>Pristine->{{myForm.myInput.$pristine}}</h2><!--true!,false-->
+<h2>Dirty->{{myForm.myInput.$dirty}}</h2><!--false!,true-->
+<h2>Valid->{{myForm.myInput.$valid}}</h2><!--false!,true-->
+<h2>Invalid->{{myForm.myInput.$invalid}}</h2><!--false!,true-->
+<h3>
+    <span ng-show="myForm.myInput.$touched && myForm.myInput.$invalid">
+        Enter your input</span>
+</h3>
+</body>
+</html>

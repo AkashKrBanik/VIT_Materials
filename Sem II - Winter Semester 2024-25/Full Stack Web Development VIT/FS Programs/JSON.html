@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body onload="displayDoc()">
+<script>
+   function displayDoc() {
+      // Creating XMLHttpRequest object
+      var myObj = new XMLHttpRequest();
+
+      // Creating a callback function
+      myObj.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+            var jsonObj = JSON.parse(myObj.responseText);//JSON.parse() returns JSON object  
+           //document.getElementById("sample").innerHTML = this.responseText;
+           document.getElementById("date").innerHTML +=  jsonObj.date;  
+           document.getElementById("time").innerHTML = jsonObj.time;  
+         }else{
+            console.log("Error Found")
+         }
+      };
+      // Open the given file
+      //myObj.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+      myObj.open("GET", "http://date.jsontest.com/", true);
+
+      // Sending the request to the server
+      myObj.send();
+   }
+</script>
+<div id="sample">
+   <h2>Getting Data</h2>
+   <p>Please click on the button to fetch data</p>
+   <button type="button" onclick="displayDoc()">Click Me</button>
+   Date: <span id="date"></span><br/>  
+    Time: <span id="time"></span><br/>  
+  
+</div>
+</body>
+</html>

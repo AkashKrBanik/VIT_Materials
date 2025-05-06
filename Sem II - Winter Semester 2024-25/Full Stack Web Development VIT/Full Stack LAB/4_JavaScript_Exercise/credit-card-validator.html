@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 60%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .output {
+            margin-top: 20px;
+            display: none;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .output p {
+            margin: 0;
+        }
+
+        .valid {
+            color: green;
+            font-weight: bold;
+        }
+
+        .invalid {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Credit Card Validator</h1>
+    <div class="container">
+        <label for="card-number">Enter Credit Card Number:</label>
+        <input type="text" id="card-number" placeholder="Enter card number">
+        <button type="button" onclick="validateCardNumber()">Validate</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function validateCardNumber() {
+            const cardInput = document.getElementById('card-number');
+            const cardNumber = cardInput.value.trim();
+            const outputDiv = document.getElementById('output');
+
+            const cardPatterns = {
+                "American Express": /^(34|37)\d{13}$/,
+                "Diners Club": /^((3(?:0[0-5])\d{11})|(36|38)\d{12})$/,
+                "Discover": /^(6011\d{12}|65\d{14})$/,
+                "JCB": /^(?:2131\d{11}|1800\d{11}|35\d{14})$/,
+                "MasterCard": /^(5[1-5]\d{14})$/,
+                "Visa": /^4(\d{12}|\d{15})$/
+            };
+
+            let isValid = false;
+            let cardType = "";
+
+            for (const [type, pattern] of Object.entries(cardPatterns)) {
+                if (pattern.test(cardNumber)) {
+                    isValid = true;
+                    cardType = type;
+                    break;
+                }
+            }
+
+            outputDiv.style.display = 'block';
+            if (isValid) {
+                outputDiv.innerHTML = `<p class='valid'>Valid Card!<br> Card Number: ${cardNumber} <br> Card Type: ${cardType}</p>`;
+            } else {
+                outputDiv.innerHTML = `<p class='invalid'>Invalid Card Number</p>`;
+            }
+
+            cardInput.value = '';
+        }
+    </script>
+</body>
+</html>

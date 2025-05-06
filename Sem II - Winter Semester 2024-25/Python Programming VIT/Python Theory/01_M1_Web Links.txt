@@ -1,0 +1,8 @@
+https://drive.google.com/file/d/1vmV40wUe1D_zOzEt_fbvMHy--gVto8st/view
+
+https://docs.python.org/3/tutorial/inputoutput.html
+
+https://docs.python.org/3/tutorial/controlflow.html#if-statements
+
+https://docs.python.org/3/tutorial/controlflow.html#for-statements
+

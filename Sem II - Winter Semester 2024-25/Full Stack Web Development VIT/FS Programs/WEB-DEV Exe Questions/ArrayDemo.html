@@ -1,0 +1,76 @@
+<html>
+   <head>
+      <script type = "text/javascript">
+    
+let data1 = [4, 5, 6];
+let data2= new Array(1,2,3,4);
+let data3 = new Array("SAM",10,'M',34.5);
+const data4= [30,40,50];
+console.log(data1);
+console.log(data2);
+console.log(data3);
+
+function display(){    
+     document.getElementById("output").innerHTML="Length(data1)="+data1.length+"<br>";
+   document.getElementById("output").innerHTML+="Length(data2)="+data2.length+"<br>";
+      document.getElementById("output").innerHTML+="Length(data3)="+data3.length+"<br>"
+    for(let i of data3){
+        document.getElementById("output").innerHTML+="data3="+i+"<br>"
+    }
+    console.log("ToString()="+data3.toString());
+    console.log("join(seperator char)="+data3.join('|'));//All Elements to string-SAM|10|M|34.5
+    console.log("join(space seperator )="+data3.join(' '));//All Elements to string-SAM 10 M 34.5
+    console.log("at(2)="+data3.at(2));
+    console.log("at(10)="+data3.at(10));
+    console.log("popped element ="+data3.pop());
+    console.log("After Pop Length(data3)="+data3.length);
+    data3.push("Cycle","TIME");
+    console.log("After Push Length(data3)="+data3.length);
+    console.log("After Push="+data3);
+    console.log("indexOf(Cycle)="+data3.indexOf("Cycle"));
+    console.log("indexOf(Cycle3)="+data3.indexOf("Cycle3") + "(NOT FOUND)");
+    data3.shift();
+    console.log("After Shifting="+data3);
+    data3.unshift("TOM");
+    console.log("After UnShifting="+data3);
+    delete data3[2];
+    console.log("After Delete="+data3);
+    console.log("After Deleting 2nd index="+data3.length);
+    console.log("Concat Data1 & Data2= "+ data1.concat(data2));
+    console.log("data1.length="+data1.length+"(No change in length of data1)");
+    let data5 = data1.concat(data2,data3);
+    console.log("data5=["+data5+"]");
+    let data6 = data5.concat("last",23,3);
+    console.log("Value merged with data6=["+data6+"]");
+    let data7 =[100,101,102,103,104,105];
+    console.log("data7=["+data7+"]");
+    data7.copyWithin(2,0);
+    console.log("data7.copyWithin(2,0)="+data7);
+    data7.copyWithin(2,0,2);
+    console.log("data7.copyWithin(2,0,3)="+data7);
+    //data7.copyWithin(2,0,2)=100,101,100,101,102,103
+    //data7.copyWithin(2,0,3)=100,101,100,101,102,103
+    let data8 =[10,11,12,13,14];
+    console.log("data8="+data8);
+    data8.splice(2,0,15,16);
+    console.log("After Splice: data8="+data8);
+    let data9 = data8.slice(3);
+    console.log("After Slice: data8="+data8 + "(no change)");
+    console.log("Slice: data9="+data9);
+    console.log("Sort: data9="+data9.sort());
+    console.log("Reverse: data9="+data9.reverse());
+    console.log("Desc Sort using Function="+data9.sort(function(a,b){return b-a}));
+
+    
+    
+}
+
+
+</script>
+<body onload="display()">
+    <div id="output">
+        
+    </div>
+</body>
+</html>
+

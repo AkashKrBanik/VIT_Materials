@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Greetings Designer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: darkblue;
+        }
+        .sidebar {
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .main-content {
+            width: 70%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fffcdc;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select, input[type="color"]{
+            width: 100%;
+        }
+        button {
+            width: 60%;
+            padding: 10px;
+            margin: 20px auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .greeting-card {
+            width: 100%;
+            height: 80%;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .greeting-text {
+            position: absolute;
+            color: black;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1><center>Online Greeting Designer</center></h1>
+        <label for="image-url">Image URL:</label>
+        <input type="text" id="image-url" placeholder="Enter image URL">
+        
+        <label for="image-position">Image Position:</label>
+        <select id="image-position">
+            <option value="center">Background</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+        </select>
+        
+        <label for="greeting-text">Greeting Text:</label>
+        <input type="text" id="greeting-text" placeholder="Enter greeting text">
+        
+        <label for="font-size">Font Size:</label>
+        <input type="number" id="font-size" placeholder="Enter font size" min="10" max="100">
+        
+        <label for="font-color">Font Color:</label>
+        <input type="color" id="font-color">
+        
+        <label for="font-style">Font Style:</label>
+        <select id="font-style">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+        
+        <button type="button" onclick="updateGreetingCard()">Update Greeting Card</button>
+    </div>
+    
+    <div class="main-content">
+        <div class="greeting-card" id="greeting-card">
+            <div class="greeting-text" id="greeting-text-display">Your Greeting Text Here</div>
+        </div>
+    </div>
+
+    <script>
+        function updateGreetingCard() {
+            const imageUrl = document.getElementById('image-url').value;
+            const imagePosition = document.getElementById('image-position').value;
+            const greetingText = document.getElementById('greeting-text').value;
+            const fontSize = document.getElementById('font-size').value;
+            const fontColor = document.getElementById('font-color').value;
+            const fontStyle = document.getElementById('font-style').value;
+            const greetingCard = document.getElementById('greeting-card');
+            const greetingTextDisplay = document.getElementById('greeting-text-display');
+
+            if (imageUrl) {
+                greetingCard.style.backgroundImage = `url(${imageUrl})`;
+            }
+
+            if (imagePosition === 'left') {
+                greetingCard.style.backgroundPosition = 'left';
+            } else if (imagePosition === 'right') {
+                greetingCard.style.backgroundPosition = 'right';
+            } else {
+                greetingCard.style.backgroundPosition = 'center';
+            }
+
+            greetingTextDisplay.textContent = greetingText;
+            greetingTextDisplay.style.fontSize = `${fontSize}px`;
+            greetingTextDisplay.style.color = fontColor;
+            greetingTextDisplay.style.fontFamily = fontStyle;
+        }
+    </script>
+</body>
+</html>

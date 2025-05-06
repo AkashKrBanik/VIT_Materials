@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#p2").click(function (){
+	if ($("#hnum").val()){
+		var val = $("#hnum").val();
+		val++;
+		if ($("#p2").val() == null)
+			$("#p2").text("the Number is : "+val);
+		else 
+			$("#p2").append("<br>Incremented value is : "+val);
+		}
+	else
+		alert("Enter a number in the text box");
+  });
+});
+</script>
+</head>
+<body>
+
+Enter a number: <input type="number" id="hnum" min=0><br>
+<p id="p2"> Number Process:</p>
+</body>
+</html>

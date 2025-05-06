@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <center><h1>AJAX-JSON</h1></center>
+
+    <h3>Enter UserName to look for:</h3>
+    <input type="text" name="username" id="username">
+    <button type="submit" onclick="searchDetails()">Search</button>
+
+    <div id="output"></div>
+    
+    <script>
+        function searchDetails(){
+            var username=document.getElementById("username").value.trim();
+            if(username===""){
+                alert("Please enter a username")
+                return;
+            }
+
+            const xhttp=new XMLHttpRequest();
+            xhttp.open("GET","employee.json",true);
+
+            xhttp.onreadystatechange= function(){
+                if(xhttp.readyState===4 && xhttp.status===200){
+                    let emp_data = JSON.parse(xhttp.responseText);
+                    let user = emp_data.employees.find(user => user.username === username);
+                    let output_div = document.getElementById("output");
+
+                    if(user){
+                        output_div.innerHTML=`
+                            <h3>User Details</h3>
+                            <p><b>Name:</b>${user.name}</p>
+                            <p><b>Age:</b>${user.age}</p>
+                            <p><b>Email:</b>${user.email}</p>
+                        `;
+                    } else {
+                        output_div.innerHTML=`<h3>User not found</h3>`;
+                    }
+
+                }
+            };
+
+            xhttp.send();
+        }
+        
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp2" ng-controller="displayCtrl">
+  <form novalidate ng-submit="display()">
+    UserName:<input type="text" ng-model="user.myName"><br><br>
+    EmailId:<input type="email" ng-model="user.myEmail">
+    <button ng-click="reset()">RESET</button>
+  </form>
+  <p>Form Data= {{user}}</p>  
+  <p> Test Data={{test}}</p>  
+  <p> <span ng-bind="output"></span>!</p>         
+</div>
+
+
+<script>
+var app2= angular.module("myApp2", []);
+app2.controller("displayCtrl", function($scope) {
+            $scope.test={"myName":"Time","myEmail":"test@gmail.com"}    
+            $scope.reset=function(){
+                $scope.user = angular.copy($scope.test);
+            };
+            $scope.reset();
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body onload="displayDoc()">
+<script>
+   function displayDoc() {
+      // Creating XMLHttpRequest object
+      var myObj = new XMLHttpRequest();
+      // Creating a callback function      
+      myObj.onreadystatechange = function() {
+         document.getElementById("readystates").innerHTML = this.readyState;
+         document.getElementById("sample").innerHTML = this.status;
+         if (this.readyState == 4 && this.status == 200) { 
+           document.getElementById("sample").innerHTML += this.responseText;
+         }else{
+            console.log("Error Found")
+         }
+      };
+      // Open the given file
+      myObj.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+      // Sending the request to the server
+      myObj.send();
+   }
+</script>
+<div id="readystates">
+   
+</div>
+<div id="sample">
+   <h2>Getting Data</h2>
+   <p>Please click on the button to fetch data</p>
+   <button type="button" onclick="displayDoc()">Click Me</button>   
+</div>
+</body>
+</html>

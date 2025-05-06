@@ -1,0 +1,26 @@
+linear reg....d
+multi reg....d
+decision tree
+knn.....d
+svm.....d
+logistic regression.....d
+random forest.....d
+dbscan.....d
+k-means clustering.....d
+ensemble- maxvoting.....d
+adaboost.....d
+pca
+naive baye's classifier.....d
+
+
+linear.....d
+multi-linear.....d
+logistic.....d
+
+knn.....d
+svm.....d
+decision.....d
+dbscan......d
+k-means.....d
+
+

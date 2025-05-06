@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+    <style>
+        body {
+            text-align: center;
+        }    
+        h1 {
+            color: green;
+        }    
+        .topparent {
+            width: 600px;
+            height: 200px;
+            background-color: lightgreen;
+        }    
+        .parent {
+            width: 600px;
+            height: 200px;
+            background-color: lightgrey;
+        }    
+        .subparent {
+            width: 600px;
+            height: 200px;
+            background-color: cyan;
+        }   
+        .child_1 {
+            margin-left: 55px;
+            width: 150px;
+            height: 30px;
+            background-color: grey;
+            /*display: none;*/
+        }    
+        .child_2 {
+            margin-left: 55px;
+            width: 150px;
+            height: 30px;
+            background-color: grey;
+            /*display: none;*/
+        }    
+        .child_3 {
+            margin-left: 55px;
+            width: 150px;
+            height: 30px;
+            background-color: grey;
+            display: none;
+        }
+            div {
+                outline: 1px solid green;
+            }
+    
+        .topparent:hover + .subparent .child_3 {
+            display: block;
+        }
+    </style>
+</head> 
+
+<body> 
+    <h1>GeeksforGeeks</h1> 
+    <h3> 
+        Hovering one element to change 
+        the effect to other element 
+    </h3> 
+    <div class="parent"> GeeksforGeeks 
+        <div class="topparent"> GeeksforGeeks_TOPPARENT</div>
+        <div class="subparent"> GeeksforGeeks_SUBPARENT 
+            <div class="child_3"> 
+                GeeksforGeeks_3
+            </div> 
+            <br> 
+            <div class="child_1"> 
+                GeeksforGeeks_1 
+            </div> 
+            <br> 
+            <div class="child_2"> 
+                GeeksforGeeks_2
+            </div> 
+        </div>
+    </div> 
+</body> 
+</html>

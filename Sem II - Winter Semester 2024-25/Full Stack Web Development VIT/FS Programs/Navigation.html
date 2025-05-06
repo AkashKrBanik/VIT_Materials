@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<title>Libary Management System</title>
+<style type="text/css">
+nav {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: green;
+}
+li{
+    list-style-type: none;
+    display: inline;
+    margin-right: 20px;
+    font-size:25px;
+    
+}
+/*a{
+    text-decoration: none;
+		 color: brown;
+         font-style: italic;
+}*/
+a:link {
+    color:#fff;
+    /*color:brown;*/
+    text-decoration: none;
+    
+}
+a:hover {
+    color: orange;
+    text-decoration: none;
+}
+li > ul {/*selector on the right is child of left*/
+    display: none
+}
+/*li:hover{
+    background-color:blue;
+}*/
+li:hover ul {
+    display: block; position: absolute; left:200px;
+    background-color:blue;
+    margin:0;
+    
+}
+li:hover ul li a:link{
+    display: block;
+    margin-left:-30px;
+       
+}
+
+li:hover ul li a:hover{
+    display: block;
+    margin-left:-30px;
+    color:magenta;
+       
+}
+</style>
+</head>
+<body>
+<nav>
+<ul>
+    <li><a href="#">Books View</a></li>
+    <li><a href="#">Search</a></li>
+    <li>
+        <a href="#">Services</a>
+            <ul>
+                <li><a href="#">Lending</a></li>
+                <li><a href="#">Borrow</a></li>
+                <li><a href="#">Reference Borrow</a></li>
+                <li><a href="#">Photo Stat Request</a></li>
+             </ul>
+    </li>
+<li><a href="#">Feedback</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="itemApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Item Collection Manager</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    input, button { margin: 5px 0; padding: 6px; font-size: 14px; }
+    ul { margin-top: 15px; padding-left: 20px; }
+    li { margin-bottom: 5px; }
+    span { margin-right: 10px; }
+  </style>
+</head>
+<body ng-controller="ItemController">
+
+  <h2>Item Collection Manager</h2>
+
+  <p>Total Items: <strong>{{ items.length }}</strong></p>
+
+  <div>
+    <input type="text" ng-model="newItem" placeholder="Enter item name">
+    <button ng-click="addItem()">Add Item</button>
+  </div>
+
+  <ul>
+    <li ng-repeat="item in items track by $index">
+      <span>{{ item }}</span>
+      <button ng-click="removeItem($index)">Remove</button>
+    </li>
+  </ul>
+
+  <script>
+    var app = angular.module('itemApp', []);
+
+    app.controller('ItemController', function($scope) {
+      $scope.items = ['Pen', 'Notebook', 'Eraser', 'Pencil'];
+      $scope.addItem = function() {
+        if ($scope.newItem && $scope.newItem.trim() !== "") {
+          $scope.items.push($scope.newItem.trim());
+          $scope.newItem = ""; 
+        }
+      };
+      $scope.removeItem = function(index) {
+        $scope.items.splice(index, 1);
+      };
+    });
+  </script>
+
+</body>
+</html>

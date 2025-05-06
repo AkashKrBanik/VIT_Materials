@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DYNAMIC ARRAY CREATION AND SEARCHING</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+    <div>
+         <div  ng-app="myApp" ng-controller="sortCtrl">
+            Enter Value to Insert:<input type="text" ng-model="newValue" required><br>
+            <button ng-click="insert()">Push Element</button>
+            <button ng-click="search()">Search</button>
+            <!--<button ng-click="sortBy('name')">Sort by Name</button>-->
+            <p> <span ng-bind="output"></span>!</p>            
+            <ul>
+                <li ng-repeat = "x in myArray">{{x}}</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("sortCtrl", function($scope,$filter) {
+            $scope.myArray=[ ];
+            $scope.insert=  function(){
+                $scope.myArray.push($scope.newValue);
+                $scope.newValue="";
+                $scope.output="Successfully Inserted!!!";
+            }
+            $scope.search=  function(){
+                //console.log($scope.newValue);
+                var x=$scope.newValue;                
+                console.log("x="+x);
+                if(x==null){
+                    $scope.output="PLEASE FEED IN SEARCH INPUT";   
+                    return;
+                }
+                //var flist= $filter('filter')($scope.myArray,{x});
+                //The filter filter allows us to filter an array, and return an array containing only the matching items. 
+                $scope.queryData = $filter('filter')($scope.myArray, x);
+                console.log($scope.queryData);
+                console.log("LENGTH "+$scope.queryData.length);
+                if( $scope.queryData.length===0){
+                    $scope.output=$scope.queryData+"NOT found";    
+                }else{
+                $scope.output=$scope.queryData+"found";
+                }
+            }
+        });
+        
+        </script>
+</body>
+</html>

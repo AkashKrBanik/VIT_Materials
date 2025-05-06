@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    ul { list-style-type: none; padding: 0; }
+    li { padding: 5px; }
+    .white { background-color: white; }
+    .yellow { background-color: yellow; }
+  </style>
+</head>
+<body>
+  <h2>To-Do List</h2>
+  <input type="text" id="todoInput" placeholder="Enter task">
+  <button id="addButton">Add</button>
+  <button id="removeButton">Remove</button>
+
+  <ul id="list"></ul>
+
+  <script>
+    $(document).ready(function() {
+      // Function to add a new item to the list
+      $('#addButton').click(function() {
+        var todoText = $('#todoInput').val().trim();
+        if (todoText !== '') {
+          var listItem = $('<li>').text(todoText);
+          $('#list').append(listItem);
+
+          // Alternate background colors
+          $('#list li').each(function(index) {
+            $(this).removeClass('white yellow');
+            if (index % 2 === 0) {
+              $(this).addClass('white');
+            } else {
+              $(this).addClass('yellow');
+            }
+          });
+
+          // Clear input box
+          $('#todoInput').val('');
+        }
+      });
+
+      // Function to remove an item from the list
+      $('#removeButton').click(function() {
+        var todoText = $('#todoInput').val().trim().toLowerCase();
+        if (todoText !== '') {
+          $('#list li').each(function() {
+            if ($(this).text().toLowerCase() === todoText) {
+              $(this).remove();
+              return false; // Stop after the first match
+            }
+          });
+
+          // Alternate background colors after removal
+          $('#list li').each(function(index) {
+            $(this).removeClass('white yellow');
+            if (index % 2 === 0) {
+              $(this).addClass('white');
+            } else {
+              $(this).addClass('yellow');
+            }
+          });
+
+          // Clear input box
+          $('#todoInput').val('');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

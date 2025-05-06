@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSNL Grievance Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .container {
+            width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 60%;
+            padding: 10px;
+            margin: 20px auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+        .output p {
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>BSNL Grievance Registration</h1>
+    <div class="container">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address" required>
+        
+        <label for="circle">Telecom Circle:</label>
+        <input type="text" id="circle" placeholder="Enter your telecom circle" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        
+        <label for="grievance">Grievance Nature:</label>
+        <select id="grievance" required>
+            <option value="">Select a grievance</option>
+            <option value="huge_bills">Huge bills for limited mobile usage</option>
+            <option value="roaming_charges">Roaming charges</option>
+            <option value="service_disruption">Frequent service disruption</option>
+        </select>
+        
+        <button type="button" onclick="submitForm()">Submit</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        const complaints = [];
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const circle = document.getElementById('circle').value;
+            const email = document.getElementById('email').value;
+            const grievance = document.getElementById('grievance').value;
+            const outputDiv = document.getElementById('output');
+
+            if (!name || !address || !circle || !email || !grievance) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (!grievance) {
+                outputDiv.innerHTML = '<p>No grievances</p>';
+                outputDiv.style.display = 'block';
+                return;
+            }
+
+            const complaint = {
+                name,
+                address,
+                circle,
+                email,
+                grievance
+            };
+
+            complaints.unshift(complaint);
+            displayComplaints();
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function displayComplaints() {
+            const outputDiv = document.getElementById('output');
+            let table = `
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Telecom Circle</th>
+                        <th>Email</th>
+                        <th>Grievance Nature</th>
+                    </tr>
+            `;
+
+            complaints.forEach(complaint => {
+                table += `
+                    <tr>
+                        <td>${complaint.name}</td>
+                        <td>${complaint.address}</td>
+                        <td>${complaint.circle}</td>
+                        <td>${complaint.email}</td>
+                        <td>${complaint.grievance}</td>
+                    </tr>
+                `;
+            });
+
+            table += '</table>';
+            outputDiv.innerHTML = table;
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

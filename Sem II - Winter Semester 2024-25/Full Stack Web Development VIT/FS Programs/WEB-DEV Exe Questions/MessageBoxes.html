@@ -1,0 +1,57 @@
+<html>
+   <head>
+      <script type = "text/javascript">
+         
+         function getGradeResult(total){
+                
+                var average = total/5;
+                var txt;
+                var publish;
+                if (confirm("Proceed publishing the Result. Click OK to proceed!")) {
+                    txt = "You pressed OK!";
+                    publish=true;
+                } else {
+                    txt = "You pressed Cancel!";
+                    publish=false;
+                }
+                if(!publish){
+                    document.getElementById("gradeoutput").innerHTML = txt;
+                    return; 
+                }
+                document.getElementById("gradeoutput").innerHTML = txt;
+                switch(true){
+                  case average>=85:  document.getElementById("gradeoutput").innerHTML+="S-Grade<br>";break;
+                  case average>=70 && average<85:   document.getElementById("gradeoutput").innerHTML+="A-Grade<br>";break;
+                  case average>=55 && average<70:  document.getElementById("gradeoutput").innerHTML+="B-Grade<br>";break;
+                  case average>=40 && average <55:  document.getElementById("gradeoutput").innerHTML+="C-Grade<br>";break;
+                  case average<40: document.getElementById("gradeoutput").innerHTML+="<font color='red'>F-Grade</font><br>";break;
+                  default:document.getElementById("gradeoutput").innerHTML+="Incorrect Computation";break;
+                } 
+
+                let stuName = prompt("Enter the name of the student", "");
+                let text;
+                if (stuName == null || stuName == "") {
+                    text = "No input.";
+                } else {
+                    text = "Hello " + stuName + "! Your Average is "+average;
+                }
+                document.getElementById("gradeoutput").innerHTML+=text;
+         }
+</script>
+   </head>
+   <body>
+    <div id="gradeinput">
+        <form method ="get">
+         <label for="total">Your Total Marks for 500</label>
+         <input type="text" id="total" name="total" value="">
+         <br>
+         
+         <input name="buttonExecute" onclick="getGradeResult(document.getElementById('total').value)" 
+                     type="button" value="Compute Grade" />
+         
+        </form>  
+        <div id="gradeoutput"></div>
+
+ </div>
+   </body>
+   </html> 

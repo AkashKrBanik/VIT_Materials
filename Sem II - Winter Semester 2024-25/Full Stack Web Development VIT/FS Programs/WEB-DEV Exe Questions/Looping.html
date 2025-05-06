@@ -1,0 +1,115 @@
+<html>
+   <head>
+      <script type = "text/javascript">
+         
+                  
+         function generateFibo(nTerms) {
+                var i, n;
+                // initialize first and second terms
+                var t1 = 0, t2 = 1;
+                // initialize the next term (3rd term)
+                var nextTerm = t1 + t2;
+                // get no. of terms from user- print the first two terms t1 and t2
+                document.getElementById("fibo").innerHTML=t1+"<br>";
+                document.getElementById("fibo").innerHTML+=t2+"<br>";
+
+                // print 3rd to nth terms
+                for (i = 3; i <= nTerms; ++i) {
+                    document.getElementById("fibo").innerHTML+=nextTerm+"<br>";
+                    t1 = t2;
+                    t2 = nextTerm;
+                    nextTerm = t1 + t2;
+                }
+            }
+
+            function generateOddOrEven(nLimit,nType){
+                alert("Got"+nLimit+" and "+nType);
+                var i=0;
+                //alert("Result"+(i%2));
+                
+                while(i<=nLimit){
+                        if(nType == 'Even'){
+                            isEven(i) ? document.getElementById("number").innerHTML+="E"+i+"<br>" : "";
+                        }
+                        else{
+                            isEven(i) ? "":document.getElementById("number").innerHTML+="O"+i+"<br>" ;
+                        }
+                       //isEven(i) ? document.getElementById("number").innerHTML+="E"+i+"<br>" : document.getElementById("number").innerHTML+="O"+i+"<br>";
+                       /*if(nType=='Even' && (i%2==0)){
+                            document.getElementById("number").innerHTML+="E"+i+"<br>";
+                       }
+                       else{
+                            document.getElementById("number").innerHTML+="O"+i+"<br>";
+                       }*/
+                       i++;
+                }
+            }
+            function isEven(n) {
+                return (n % 2 == 0);
+            }
+
+            function summation(n){
+                var i=0,sum=0;
+                do{
+                     sum = sum +i;
+                     i++;   
+                }while(i<=n);
+                document.getElementById("sumValue").value = sum;
+            }
+
+      </script>
+   </head>
+   
+   <body>
+    <br>
+
+    
+
+    <div id="fiboGen">
+           <form method ="get">
+            <label for="fiboTerm">Enter N value</label>
+            <input type="text" id="fiboTerm" name="fiboTerm" value="">
+            <br>
+               <input name="buttonExecute" onclick="generateFibo(document.getElementById('fiboTerm').value)" 
+                        type="button" value="Generate Fibonacci" />
+            
+           </form>
+    </div>
+
+    <div id="printNumber">
+        <form method ="get">
+         <label for="limit">Enter Limit (N)</label>
+         <input type="text" id="limit" name="limit" value="">
+         <label for="type">Select Odd/Even</label>
+         <select name="type" id="type">
+            <option name="even" id="even">Even</option>
+            <option name="odd" id="odd">Odd</option>
+        </select>
+         
+         <br>
+            <input name="buttonExecute" onclick="generateOddOrEven(document.getElementById('limit').value, 
+                                                                                                    document.getElementById('type').value)" 
+                     type="button" value="Generate Number" />
+         
+        </form>
+ </div>
+
+ <div id="summation">
+    <form method ="get">
+     <label for="nvalue">Enter N</label>
+     <input type="text" id="nvalue" name="nvalue" value="">
+        
+     <br>
+        <input name="buttonExecute" onclick="summation(document.getElementById('nvalue').value)" 
+                 type="button" value="Compute Summation" />
+    <br>
+    <label for="sumValue">Summation:</label>
+     <input type="text" id="sumValue" name="sumValue" value="">
+     
+    </form>
+</div>
+    <div id="fibo"></div>
+    <div id="number"></div>
+
+   </body>
+</html>

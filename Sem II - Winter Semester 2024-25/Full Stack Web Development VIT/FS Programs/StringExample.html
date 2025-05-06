@@ -1,0 +1,59 @@
+
+<html>
+   <head>
+      <script type = "text/javascript">
+        let text = "The quick brown fox jumps over the lazy dog";
+      function display(){
+            document.getElementById("output").innerHTML="Given Text:=<h3>"+text+"</h3><br>";
+            document.getElementById("output").innerHTML+="<b>at(position):text.at(5)</b>="+text.at(5)+"<br>";
+            document.getElementById("output").innerHTML+="<b>charAt(position):text.charAt(5)</b>="+text.charAt(5)+"<br>";
+            document.getElementById("output").innerHTML+="<b>Using []:text[5]</b>="+text[5]+"<br>"; 
+            let part = text.slice(10, 15);
+            document.getElementById("output").innerHTML+="<b>text.slice(10,15)</b>="+part+"<br>"; 
+            part = text.slice(10);
+            document.getElementById("output").innerHTML+="<b>text.slice(10)</b>="+part+"<br>";  
+            part = text.slice(-12, -6); 
+            document.getElementById("output").innerHTML+="<b>text.slice(-12,-6)</b>="+part+"<br>";  
+            part = text.substring(10,15);
+            document.getElementById("output").innerHTML+="<b>text.substring(10,15)</b>="+part+"<br>";  
+            let part1 = text.substring(-12,12);//From 0 to 11th position-Exclude 12th position
+            document.getElementById("output").innerHTML+="<b>text.substring(-12,12)</b>="+part1+"<br>";  
+            let part2 =text.substring(12,-12);//If either argument is negative or is NaN, it is treated as if it were 0. 
+                                                                //Also If start > stop, then substring will swap those 2 arguments.
+            document.getElementById("output").innerHTML+="<b>text.substring(12,-12)</b>="+part2+"<br>";  
+            let part3 = text.substring(-12,-12);//Both are 0 and 0. So no output
+            document.getElementById("output").innerHTML+="<b>text.substring(-12,-12);</b>="+part3+"<br>";  
+            document.getElementById("output").innerHTML+="<b>text.endsWith(string);</b>="+text.endsWith("dog")+"<br>"; 
+            //Split the String
+            const myArray = text.split(" ");
+            for(let x of myArray){
+                  document.getElementById("output").innerHTML+=x+"<br>"; 
+            }
+            //Converting String to Char Array
+            var strvalue = "Hello world!".split('');
+            console.log(strvalue);
+            var strvalue2=Object.assign([], part);
+            console.log(strvalue2);
+      }
+    
+</script>
+<body onload="display()">
+   <body>
+   <b>Books</b> 
+   <div id="output"></div>
+   <div id="searchinput">
+    <form method ="get">
+     <label for="capacity">Enter the capacity</label>
+     <input type="text" id="capacity" name="capacity" value="">
+     <br>
+   
+     <input name="buttonExecute" onclick="searchCars(document.getElementById('capacity').value)" 
+                 type="button" value="Search" />
+     
+    </form>  
+    <div id="searchoutput"></div>
+
+</div>
+
+</body>
+</html>

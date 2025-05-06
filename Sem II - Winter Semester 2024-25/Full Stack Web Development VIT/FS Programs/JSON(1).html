@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body onload="displayDoc()">
+<script>
+   function displayDoc() {
+      // Creating XMLHttpRequest object
+      var myObj = new XMLHttpRequest();
+
+      // Creating a callback function
+      myObj.onreadystatechange = function() {
+         try{
+            document.getElementById("readystates").innerHTML = this.readyState;
+         if (this.readyState == 4 && this.status == 200) {
+            var jsonObj = JSON.parse(myObj.responseText);//JSON.parse() returns JSON object  
+           //document.getElementById("sample").innerHTML = this.responseText;
+           //document.getElementById("date").innerHTML +=  jsonObj.date;  
+           //document.getElementById("time").innerHTML = jsonObj.time;  
+           jsonObj.forEach(function(item){
+            console.log('USERID: ' + item.userId);
+            console.log('POST ID: ' + item.id);
+            console.log('TITLE: ' + item.title);
+            console.log('BODY: ' + item.body);
+            document.getElementById("userid").innerHTML =item.userId;
+           document.getElementById("title").innerHTML+=item.title+"<br>";
+});
+           
+         }else{
+            console.log("Error Found")
+         }
+         }
+         catch(e){
+            console.error("Exception thrown", e.stack);
+         }
+         
+      };
+      // Open the given file
+     // myObj.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+      //myObj.open("GET", "https://api.github.com/users/mralexgray/repos",true);
+      //myObj.open("GET", "http://date.jsontest.com/", true);
+      //myObj.open("GET", "https://jsonplaceholder.typicode.com/users",true);
+      myObj.open("GET", "https://jsonplaceholder.typicode.com/posts",true);
+      
+
+      // Sending the request to the server
+      myObj.send();
+   }
+</script>
+<div id="sample">
+   <h2>Getting Data</h2>
+   <p>Please click on the button to fetch data</p>
+   <button type="button" onclick="displayDoc()">Click Me</button>
+   UserID: <span id="userid"></span><br/>  
+    Title: <span id="title"></span><br/>  
+  
+</div>
+<div id="readystates">
+   
+</div>
+</body>
+</html>

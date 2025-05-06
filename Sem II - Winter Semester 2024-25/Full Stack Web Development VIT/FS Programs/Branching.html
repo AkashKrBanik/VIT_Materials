@@ -1,0 +1,67 @@
+<html>
+   <head>
+      <script type = "text/javascript">
+         
+            function shouldVote() {
+               var age = 25;
+               if(age >= 18){
+                  alert("Voting is our civic responsibility. It also becomes as one"
+                        +"of their fundamental right which is RIGHT TO VOTE. ");
+                        //document .write("Children completed the age of 18 are invited to vote"+"<br>")
+                        document.getElementById("vote").innerHTML="You are eligible for voting<br>";
+               }
+               else{
+                  document .write("Children completed the age of 18 are invited to vote"+"<br>")
+               }                 
+            }
+
+            function checkGreater(){
+                   var a=10,b=15,c=5;
+                   if (a >= b && a >= c)
+                        document .write("A is the largest number."+a);
+                   else if (b >= a && b >= c)
+                        document .write("B is the largest number."+b);
+                   else
+                        document .write("C is the largest number."+c);
+            }
+
+            function getGradeResult(total){
+                
+                   var average = total/5;
+                  
+                   switch(true){
+                     case average>=85:  document.getElementById("gradeoutput").innerHTML="S-Grade<br>";break;
+                     case average>=70 && average<85:   document.getElementById("gradeoutput").innerHTML="A-Grade<br>";break;
+                     case average>=55 && average<70:  document.getElementById("gradeoutput").innerHTML="B-Grade<br>";break;
+                     case average>=40 && average <55:  document.getElementById("gradeoutput").innerHTML="C-Grade<br>";break;
+                     case average<40: document.getElementById("gradeoutput").innerHTML="<font color='red'>F-Grade</font><br>";break;
+                     default:document.getElementById("gradeoutput").innerHTML="Incorrect Computation";break;
+                   } 
+            }
+         
+      </script>
+   </head>
+   
+   <body onload="shouldVote()">
+    <br>
+    <div id="vote"></div><br>
+    <button type="button" onclick="checkGreater()">Check for Greater</button>
+
+    <div id="gradeinput">
+           <form method ="get">
+            <label for="total">Your Total Marks for 500</label>
+            <input type="text" id="total" name="total" value="">
+            <br>
+            <!--<button type="button" onclick="getGradeResult()">Check for Greater</button>-->
+            <!--<button onclick="getGradeResult(document.getElementsByName('total')[0].value)" 
+                         type="button" value="Compute Grade" >Compute Grade</button>-->
+            <input name="buttonExecute" onclick="getGradeResult(document.getElementById('total').value)" 
+                        type="button" value="Compute Grade" />
+            
+           </form>  
+           <div id="gradeoutput"></div>
+
+    </div>
+
+   </body>
+</html>

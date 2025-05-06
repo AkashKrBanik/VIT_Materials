@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        body {
+            background-color: beige;
+        }
+        .slider {
+            position: relative;
+            max-width: 550px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 1px solid black;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        .slides img {
+            width: 100%;
+            flex: 1 0 100%;
+        }
+        .slidernav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .slidernav button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .slidernav button:hover {
+            background-color: rgb(110, 110, 110);
+            cursor: pointer;
+        }
+        .slidernav button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .controls input {
+            margin: 10px 5px;
+            padding: 5px;
+        }
+        h1{
+            text-align: center;
+            color: darkblue;
+        }
+        input{
+            width: 300px;
+            padding: 10px;
+            margin-left: 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+            border-color: gray;
+        }
+        button{
+            margin-left: 20px;
+            padding: 10px;
+            width: 150px;
+            border-radius: 8px;
+            color: darkblue;
+            font-weight: bold;
+            background-color: rgb(233, 245, 241);
+        }
+        button:hover{
+            background-color: rgb(87, 240, 87);
+            cursor: pointer;
+        }
+        .url-list {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #333;
+            background-color: #f9f9f9;
+        }
+        .url-list ul {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #555;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: darkblue;">Image Slider</h1>
+    <div class="slider">
+        <div class="slides">
+            <img src="images/happy-face2.png" alt="Image 1">
+            <img src="images/20.jpg" alt="Image 2">
+            <img src="images/21.jpg" alt="Image 3">
+            <img src="images/22.jpg" alt="Image 4">
+            <img src="images/31.jpg" alt="Image 5">
+            <img src="images/36.jpg" alt="Image 6">
+        </div>
+    </div>
+    <div class="slidernav">
+        <button onclick="prev()"><<</button>
+        <button onclick="next()">>></button>
+    </div>
+
+    <div class="controls">
+        <input type="text" id="imageURL" placeholder="Enter image URL">
+        <button onclick="addImage()">Add Image</button>
+        <button id="startBtn" onclick="startSlideShow()">Start Slide Show</button>
+        <button onclick="stopSlideShow()">Stop Slide Show</button>
+    </div>
+
+    <div class="url-list" id="urlList">
+        <h3 style="color: darkblue; text-align: center;">Added Image URLs</h3>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelector('.slides');
+        let totalSlides = slides.children.length;
+        let slideShowInterval;
+        const startBtn = document.getElementById('startBtn');
+        const urlList = document.getElementById('urlList');
+
+        function showSlide(index) {
+            const offset = -index * 100;
+            slides.style.transform = `translateX(${offset}%)`;
+        }
+
+        function prev() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function next() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function addImage() {
+            const imageURL = document.getElementById('imageURL').value;
+            if (imageURL) {
+                const img = document.createElement('img');
+                img.src = imageURL;
+                img.alt = `Image ${totalSlides + 1}`;
+                slides.appendChild(img);
+                totalSlides = slides.children.length;
+                document.getElementById('imageURL').value = '';
+                document.getElementById('imageURL').focus();
+
+                const urlElement = document.createElement('ul');
+                urlElement.textContent = imageURL;
+                urlList.appendChild(urlElement);
+            } else {
+                alert('Please enter a valid image URL.');
+            }
+        }
+
+        function startSlideShow() {
+            if (!slideShowInterval) {
+                slideShowInterval = setInterval(() => {
+                    next();
+                }, 5000);
+                startBtn.disabled = true;
+            }
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideShowInterval);
+            slideShowInterval = null;
+            startBtn.disabled = false;
+        }
+    </script>
+</body>
+</html>

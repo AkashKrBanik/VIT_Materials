@@ -1,0 +1,105 @@
+
+<html>
+   <head>
+      <script type = "text/javascript">
+        //Using an Object Constructor.
+      function book(bookName, authorName,price) {
+            this.bookName = bookName
+            this.authorName =authorName;
+            this.price=price;
+      }
+      function display(){
+          let book1 = new book('Java', 'Gurusamy',250);
+          let book2 = new book('OS', 'Avasthi',340);
+         document.getElementById("output").innerHTML+="<b>"+book1.authorName+" </b>wrote "+book1.bookName+".Price is <i>"+book1.price+"</i> INR<br>";    
+         document.getElementById("output").innerHTML+="<b>"+book2.authorName+" </b>wrote "+book2.bookName+".Price is <i>"+book2.price+"</i> INR<br>"; 
+         
+           //Creating direct instance 
+        let Employee = {Emp_Name:"SEKAR",Emp_ID:"11627",Emp_Salary:25000};
+        console.log(Employee.Emp_ID);
+        console.log(Employee.Emp_Name);
+        console.log(Employee.Emp_Salary);
+        for (let x in Employee)  {
+           document.getElementById("output").innerHTML+="<b>"+Employee[x]+"</b><br>";
+        }
+    }
+      //Using Object Literal
+      let person = {
+            first_name: 'Mukul',
+            last_name: 'Latiyan',
+            //object within object
+            address: {
+                street: 'Katpadi',
+                city: 'Vellore'
+             },
+             //method
+            getFunction: function () {
+                    return (`The name of the person is ${person.first_name} ${person.last_name}`)
+            }
+        }
+        console.log(person.getFunction());
+        console.log(person.address.street);
+
+        //Declaring Array of Objects 
+        let carsSuzuki = [
+            {
+                "color": "purple",
+                "type": "Ritz",
+                "registration": new Date('2017-01-03'),
+                "capacity": 7
+            },
+            {
+                "color": "red",
+                "type": "WagonR",
+                "registration": new Date('2018-03-03'),
+                "capacity": 5
+            },
+            {
+                "color": "brown",
+                "type": "Ertiga",
+                "registration": new Date('2018-03-03'),
+                "capacity": 7
+            },
+            {
+                "color": "black",
+                "type": "Alto-SUV",
+                "registration": new Date('2021-05-08'),
+                "capacity": 8
+            }
+  ]
+    console.log(carsSuzuki[0].type);
+    console.log(carsSuzuki[1].registration);
+    console.log(carsSuzuki[2].color);
+    console.log(carsSuzuki[3].capacity);
+    function searchCars(incapacity){
+        for (let x in carsSuzuki)  {
+            if(carsSuzuki[x].capacity>incapacity) {
+                document.getElementById("searchoutput").innerHTML+="<b>"+carsSuzuki[x].color+"</b><br>";
+                document.getElementById("searchoutput").innerHTML+="<b>"+carsSuzuki[x].registration+"</b><br>";
+                document.getElementById("searchoutput").innerHTML+="<b>"+carsSuzuki[x].type+"</b><br>";
+                document.getElementById("searchoutput").innerHTML+="<b>"+carsSuzuki[x].capacity+"</b><br>";
+                
+            }             
+        }
+    }
+</script>
+<body onload="display()">
+   <body>
+   <b>Books</b> 
+   <div id="output"></div>
+   <div id="searchinput">
+    <form method ="get">
+     <label for="capacity">Enter the capacity</label>
+     <input type="text" id="capacity" name="capacity" value="">
+     <br>
+   
+     <input name="buttonExecute" onclick="searchCars(document.getElementById('capacity').value)" 
+                 type="button" value="Search" />
+     
+    </form>  
+    <div id="searchoutput"></div>
+
+</div>
+
+</body>
+</html>

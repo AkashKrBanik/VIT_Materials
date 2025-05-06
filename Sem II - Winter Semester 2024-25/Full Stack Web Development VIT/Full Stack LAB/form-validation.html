@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .form{
+            width: 80%;
+            background-color: bisque;
+            padding: 20px;
+        }
+        input{
+            width: 60%;
+            padding: 5px;
+        }
+        button{
+            width: 50%;
+            background-color: rgb(35, 197, 35);
+            font-weight: bolder;
+            color: navy;
+
+        }
+        button:hover{
+            background-color: rgb(77, 214, 77);
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Validation</h2>
+    <div class="form">
+
+        <label for="name">Name:</label> <br>
+        <input type="text" name="name" id="name"> <br>
+        <div id="name_op" class="output"></div> <br>
+
+        <label for="age">Age:</label> <br>
+        <input type="number" name="age" id="age" min="1" max="100"> <br>
+        <div id="age_op" class="output"></div> <br>
+
+        <label for="mobile">Mobile:</label> <br>
+        <input type="number" name="mobile" id="mobile"> <br>
+        <div id="mobile_op" class="output"></div> <br>
+
+        <label for="email">Email:</label> <br>
+        <input type="email" name="email" id="email"> <br>
+        <div id="email_op" class="output"></div> <br>
+
+        <button type="button" onclick="validateForm()">Validate Form</button>
+    </div>
+
+    <script>
+        function validateForm(){
+
+            let isvalid=true;
+            const name=document.getElementById("name").value;
+            const age=document.getElementById("age").value;
+            const mobile=document.getElementById("mobile").value;
+            const email=document.getElementById("email").value;
+
+            // Validate Name
+            const name_pat= /^[a-zA-Z]$/;
+            if(!name_pat.test(name)){
+                document.getElementById("name_op").innerHTML="Invalid Name!!";
+                isvalid=false;
+            } else{
+                document.getElementById("name_op").innerHTML="";
+            }
+
+            // Validate Age
+            if (age<1 || age>100)
+                document.getElementById("age_op").innerHTML="Invalid Age";
+            else
+                document.getElementById("age_op").innerHTML="";
+
+            // Validate Mobile
+            const mobile_patt= /^\d{10}$/;
+            if(!mobile_patt.test(mobile)){
+                document.getElementById("mobile_op").innerHTML="Mobile Number must consist of 10 digits!!";
+                isvalid=false;
+            } else{
+                document.getElementById("mobile_op").innerHTML="";
+            }
+
+            // Validate Email
+            const email_patt=/^[a-z0-9._-]+@[a-z.]+\.[a-z]{2,6}$/;
+            if(!email_patt.test(email)){
+                document.getElementById("email_op").innerHTML="Please enter a valid email!!";
+                isvalid=false;
+            } else {
+                document.getElementById("email_op").innerHTML="";
+            }
+
+        }
+        
+
+    </script>
+
+</body>
+</html>

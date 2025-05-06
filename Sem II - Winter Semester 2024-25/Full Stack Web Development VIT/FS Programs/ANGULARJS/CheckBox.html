@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Welcome to LearnKode - A code learning platform</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="" >
+    <form>
+            Click here to Show/Hide<input type="checkbox" ng-model="checkhere"><br>
+            Select a Flower:
+            <input type="radio" ng-model="flower" value="Tulip">Tulip
+            <input type="radio" ng-model="flower" value="Sunflower">Sunflower
+            <input type="radio" ng-model="flower" value="Merrygold">Merrygold                       
+    </form>
+            <div ng-show="checkhere">
+                <h1>Food</h1>
+                    <div>Milk</div>
+                    <div>Butter</div>
+                    <div>Bread</div>
+            </div>
+            <div ng-switch="flower">
+                <div ng-switch-when="Tulip">
+                    <img src="Tulip.jfif">
+                </div>
+                <div ng-switch-when="Sunflower">
+                    <img src="Sunflower.jfif">
+                </div>
+                <div ng-switch-when="Merrygold">
+                    <img src="Merrygold.jfif">
+                </div>
+            </div>
+                        
+</div>
+
+    </body>
+    </html>

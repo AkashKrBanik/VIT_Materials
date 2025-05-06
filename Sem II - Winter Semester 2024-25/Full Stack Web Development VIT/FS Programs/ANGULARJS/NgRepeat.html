@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Welcome to LearnKode - A code learning platform</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <div>
+        <div ng-init="Arrs=[{name:'Tulip'},{name:'Sunflower'},{name:'Merrygold'}]">
+            <div ng-repeat="arr in Arrs">{{arr.name}}</div>
+            <!--<select ng-model="name" ng-options="arr.name as arr.name for arr in Arrs"></select>-->
+            <select ng-model="name" ng-options="arr.name|uppercase for arr in Arrs"></select>
+        </div>
+        <div ng-init="Decimals=[2.5,1.3,1.75,-10.97,3.14,5.18,9.0]">
+            <p>3rd Element in Decimals array is {{Decimals[2]|currency}}</p>
+            <b>DESCENDING ORDER</b>
+            <ul>
+                <li ng-repeat = "x in Decimals | orderBy: '-' ">{{x}}</li>
+            </ul>
+            <b>ASCENDING ORDER</b>
+            <ul>
+                <li ng-repeat = "x in Decimals | orderBy: '' ">{{x}}</li>
+            </ul>
+        </div>
+        <h3>Sorting Strings</h3>
+         <div ng-init="MyStrings=['Eleven', 'Ninty', 'Twelve', 'One', 'Five']">
+            
+            <ul>
+                <li ng-repeat="str in MyStrings | orderBy:''">{{str}}</li>
+            </ul>
+        </div>
+            
+         
+        <div  ng-controller="myCtrl">
+            <p>Looping with Objects</p>
+            <ul>
+                <li ng-repeat = "x in enrollment | orderBy:'regno'">{{x.regno +","+x.name}}</li>
+            </ul>
+        </div>
+        <div  ng-controller="myCtrl">
+            <p>Looping with Objects-Orderby Multiple Params</p>
+            <ul>
+                <li ng-repeat = "x in credits | orderBy:['regno','-credit']">{{x.regno +","+x.credit}}</li>
+            </ul>
+        </div>
+        <table ng-controller="myCtrl" border="1">
+            <tr ng-repeat="x in records">
+              <td>{{x.ID}}</td>
+              <td>{{x.Name}}</td>  
+            </tr>
+            </table>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope) {
+            $scope.enrollment=[
+                {regno:'20MBE0038',name:'Jacob'},
+                {regno:'20MBE0031',name:'John'},
+                {regno:'20MBE0033',name:'Jerald'},
+                {regno:'20MBE0035',name:'James'},
+                {regno:'20MBE0030',name:'Jemal'},
+            ];
+            $scope.credits=[
+                {regno:'20MBE0038',credit:1},
+                {regno:'20MBE0031',credit:5},
+                {regno:'20MBE0033',credit:3},
+                {regno:'20MBE0035',credit:2},
+                {regno:'20MBE0030',credit:1},
+                {regno:'20MBE0038',credit:1},
+                {regno:'20MBE0031',credit:5},
+                {regno:'20MBE0033',credit:3},
+                {regno:'20MBE0035',credit:5},
+                {regno:'20MBE0030',credit:3},
+                {regno:'20MBE0038',credit:12},
+                {regno:'20MBE0031',credit:11},
+                {regno:'20MBE0033',credit:10},
+                {regno:'20MBE0035',credit:3},
+                {regno:'20MBE0030',credit:4},
+                {regno:'20MBE0038',credit:3},
+                {regno:'20MBE0031',credit:3},
+                {regno:'20MBE0033',credit:4}
+            ];
+            $scope.records = [
+               {
+                    "ID" : "E101",
+                    "Name" : "Mark Flair"
+                },{
+                    "ID" : "E102",
+                    "Name" : "John Smith"
+                },{
+                    "ID" : "E103",
+                    "Name" : "Merlin"
+                },{
+                    "ID" : "E104",
+                    "Name" : "Prabhu"
+                }
+            ]
+        });
+        
+        </script>
+</body>
+</html>

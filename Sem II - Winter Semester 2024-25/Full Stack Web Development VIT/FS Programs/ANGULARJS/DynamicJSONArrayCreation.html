@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<script>
+var app = angular.module("arrayCreation",[]);
+app.controller("arrCreation",function($scope){
+    $scope.arr=[];
+    $scope.add = function(){
+    var Jobj ={};
+	  Jobj.idKey=$scope.uid;
+	  Jobj.idName = $scope.uname;
+    $scope.arr.push(Jobj);
+	  $scope.uid="";
+	  $scope.uname= "";}
+    $scope.sortArray = function(){
+    //alert("HERE...");
+    //$scope.Jobj.sort((a, b) => (a.uname > b.uname ? 1 : -1));}
+	$scope.arr.sort(); }
+});
+</script>
+<div ng-app="arrayCreation" ng-controller ="arrCreation">
+Enter Id: <input type=number ng-model="uid"><br><br>
+Enter Name:<input type=text ng-model="uname"><br><br>
+<button ng-click="add()">ADD</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--<button ng-click = "sortArray()"> SORT </button><br>-->
+<br>Array Content:
+<ul>
+  <li ng-repeat="x in arr | orderBy: 'idName'">{{x.idKey+" , "+x.idName}}
+    <!--<li ng-repeat="x in arr">{{x.idKey+" , "+x.idName}}</li>-->
+</ul>
+</div>
+</body>

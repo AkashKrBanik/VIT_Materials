@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="shoppingApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    input, button { margin: 5px; }
+    ul { list-style-type: none; padding-left: 0; }
+    li { margin: 5px 0; }
+    button.remove-btn { margin-left: 10px; color: white; background-color: red; border: none; padding: 5px; }
+  </style>
+</head>
+<body ng-controller="ShoppingController">
+
+  <h1>🛒 Shopping List</h1>
+
+  <ul>
+    <li ng-repeat="item in items">
+      {{ item }}
+      <button class="remove-btn" ng-click="removeItem($index)">Remove</button>
+    </li>
+  </ul>
+
+  <input type="text" ng-model="newItem" placeholder="Enter item name">
+  <button ng-click="addItem()">Add Item</button>
+
+  <script>
+    var app = angular.module('shoppingApp', []);
+
+    app.controller('ShoppingController', function($scope) {
+      // Default items
+      $scope.items = ['Milk', 'Bread', 'Eggs'];
+
+      // Add new item
+      $scope.addItem = function() {
+        if ($scope.newItem && $scope.items.indexOf($scope.newItem) === -1) {
+          $scope.items.push($scope.newItem);
+          $scope.newItem = '';
+        }
+      };
+
+      // Remove item by index
+      $scope.removeItem = function(index) {
+        $scope.items.splice(index, 1);
+      };
+    });
+  </script>
+
+</body>
+</html>

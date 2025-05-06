@@ -1,0 +1,30 @@
+
+<!doctype html>
+<html>
+	<head>
+		<!--<script language="javascript" src="angular.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	</head>
+	<body>
+		<h1>NG-INIT Example</h1>
+		<div ng-app="myApp" ng-init="myCol='lightblue';city='VELLORE';pincode='632014';penprice=8;qty=5;
+		                                                    course={coursecode:'CSE1001',coursename:'PYTHON',credits:3};arr=[1,2,3,4,5]" 
+		                 ng-controller="myCtrl">
+			Favourite Colour:<input type="text" style="background-color:{{myCol}}" ng-model="myCol" ><br><br>
+			City: <input type="text" ng-model = "city"><br><br><br>
+			Pincode: <input type="text" ng-model = "pincode"><br><br><br>
+			{{city + "-"+pincode}}<br><br><br>
+			Cost of Pen:{{penprice * qty}}			<br><br>
+			<p>{{course.coursecode + " titled "+course.coursename + " having "+arr[2] +" credits"}}</p>
+		</div>
+	
+		<!--UNDERSTAND TWO WAY DATA TRANSFER BETWEEN $scope --> view and view --> $scope-->
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function($scope) {
+                $scope.city =$scope.city;
+				$scope.pincode =$scope.pincode;
+            });		
+			</script>
+	</body>
+</html>

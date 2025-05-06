@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Student CGPA List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    table { border-collapse: collapse; width: 60%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+    h2, p { margin: 10px 0; }
+  </style>
+</head>
+<body ng-controller="StudentController">
+
+  <h2>📘 Student CGPA List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>CGPA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="student in students">
+        <td>{{ student.rollNo }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.cgpa }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Total Number of Students: <strong>{{ students.length }}</strong></p>
+
+  <script>
+    var app = angular.module('studentApp', []);
+
+    app.controller('StudentController', function($scope) {
+      // Predefined student data
+      $scope.students = [
+        { rollNo: '101', name: 'Aarav Singh', cgpa: 8.7 },
+        { rollNo: '102', name: 'Meera Patel', cgpa: 9.1 },
+        { rollNo: '103', name: 'Karan Verma', cgpa: 7.9 },
+        { rollNo: '104', name: 'Divya Rao', cgpa: 8.4 }
+      ];
+    });
+  </script>
+
+</body>
+</html>

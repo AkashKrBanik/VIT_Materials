@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>EVENT HANDLING</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+    
+         <div  ng-app="myApp" ng-controller="incrCtrl">                     
+                <h1 ng-mousemove = "i=i+1"> Mouse Over here</h1>            
+                <ul>
+                    <li>{{i}}</li>
+                </ul>
+        </div>
+        
+        
+    
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("incrCtrl", function($scope) {
+            $scope.i=0;            
+        });                
+    </script>
+</body>
+</html>

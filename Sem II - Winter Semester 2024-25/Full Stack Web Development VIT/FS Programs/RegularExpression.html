@@ -1,0 +1,59 @@
+<html>   
+   <head>
+      <title>Validate with Semantic Input Types</title> 
+      <script>
+        
+        function checkRegEx(){
+                //var input = "B9", regex = /B[a-zA-Z\d]+/; //Basket, B04,B9-matching. B-No match
+                //var input = "B", regex = /B[a-zA-Z\d]*/;//B-Match
+                //var input ="Basket",regex=/B[^a-z]+/;//B-No Match, BA-Match, Basket-No Match
+                //var input="Basket21",regex=/([a-zA-Z\d]+){8,}/;//Basket21-Matching, Basket-No match
+                
+
+                //var regex=/\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3}) /;
+                var regex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                var input = "email_123@example.com";//email@example.com,email123@example.com,email_123@example.com-Match
+                //email$123@example.com-No Match
+                //1. Atleast 1 or more alphanumeric character from the basic Latin alphabet, including the underscore.
+                //2. followed by optional . or -
+                //3. followed by  Atleast 1 or more alphanumeric character from the basic Latin alphabet, including the underscore.
+                //2 & 3 are optional
+                //4. Followed by @
+                //5.Followed by Atleast 1 or more alphanumeric character from the basic Latin alphabet, including the underscore.
+                //6.Followed by Optional .or -
+                //7.followed by  Atleast 1 or more alphanumeric character from the basic Latin alphabet, including the underscore.
+                //6 & 7 are optional
+                //8.Mandatory .
+                //9.Atleast 1 or more alphanumeric character from the basic Latin alphabet, including the underscore. Of length 2 or 3
+                
+                if(!regex.test(input))
+                alert('No match is found');
+                else
+                alert('A match is found');
+        }
+        </script>
+   </head>
+   <body>
+      <form name="form" method="post" action="#"">
+         <!--<label for="youremail">Your Email:</label>
+         <input type="email" name="email" id="youremail" required><br>
+         <label for="yourwebsite">Your Website:</label>
+         <input type="url" name="website" id="website"><br>
+         <label for="bgcol">Background Color:</label>
+        <input type="color" name="color" id="bgcol"><br>         
+         <label for="yourage">Your Age:</label>
+        <input type="number" name="age" id="yourage" min="18" max="120" required><br>
+        <label for="yourleapyear">Your Favourite Leap Year:</label>
+        <input type="number" name="leapyear" id="yourleapyear" min="2000" max="2022" step="4"><br>
+        <label for="yourmsg">Message (max 5 characters):</label>
+        <textarea name="msg" id="yourmsg" cols="25" rows="4" maxlength="5"></textarea><br>
+        <label for="yourpw">* Your Password:</label>
+        <input type="password" name="pw" id="yourpw" required  pattern="B[a-zA-Z\d]"><br><br><br>
+        
+        <input type="submit" value="Submit">
+        <button onclick="myFunction()">Check Age</button>-->
+        <button onclick="checkRegEx()">Check RegEX</button>
+       </form>
+       <p id="demo"></p>
+    </body>
+</html>

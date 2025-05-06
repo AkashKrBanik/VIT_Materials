@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .clock {
+            background-color: yellow;
+            padding: 5px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            display: flex;
+            width: 100%;
+            height: calc(100% - 60px);
+        }
+        .outer-container {
+            position: relative;
+            width: 70%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        .slider-container {
+            width: 80%;
+            height: 80%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .slider-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .slider-images img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+        .slider-images img.active {
+            display: block;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transform: translateY(-50%);
+            width: 35px;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .controls {
+            width: 30%;
+            padding: 20px;
+            background-color: #e0e0e0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            overflow-y: auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type='color'] {
+            height: 40px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="clock" id="time"></div>
+    </div>
+    <div class="content">
+        <div class="outer-container" id="outerContainer">
+            <div class="slider-container">
+                <div class="slider-images" id="sliderImages">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/2-spectre-unveiled-the-first-fully-electric-rolls-royce-front-3-4-1666037303.jpg?crop=0.845xw:1.00xh;0.0714xw,0&resize=980:*" class="active">
+                    <img src="https://mclaren.scene7.com/is/image/mclaren/720S-Coupe_hero:crop-16x9?wid=1920&hei=1080">
+                    <img src="http://m.gettywallpapers.com/wp-content/uploads/2023/01/BMW-Cars-Computer-Wallpaper.jpg">
+                    <img src="http://m.gettywallpapers.com/wp-content/uploads/2023/01/BMW-Cars-Wallpaper-1920x1080-1.jpg">
+                </div>
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </div>
+        <div class="controls">
+            <p>Pick a background color: <input type="color" id="bgcolor"></p>
+            <button onclick="changebg()">Change Background</button>
+            <br/>
+            <label>Pick the Font Style: </label>
+            <select id="fontselect" onchange="changefontstyle()">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                <option value="Times New Roman, Times, serif">Times New Roman</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Courier New, Courier, monospace">Courier New</option>
+            </select>
+            <br/>
+            <label>Pick the Font Size: </label>
+            <select id="sizeselect" onchange="changefontsize()">
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="24px">24px</option>
+                <option value="30px">30px</option>
+                <option value="36px">36px</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        function clock(){
+            let currentTime= new Date();
+            let hours= currentTime.getHours();
+            let minutes= currentTime.getMinutes();
+            let seconds= currentTime.getSeconds();
+            const timer= hours + ' : ' + minutes + ' : ' + seconds + (hours > 11 ? ' PM' : ' AM');
+            document.getElementById('time').textContent= timer;
+        }
+        setInterval(clock,1000);
+        clock();
+
+        let currentIndex = 0;
+                    
+        function moveSlide(step) {
+            const images = document.querySelectorAll('.slider-images img');
+            const totalImages = images.length;
+
+            images[currentIndex].classList.remove('active');
+            currentIndex += step;
+
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            } else if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+
+            images[currentIndex].classList.add('active');
+        }
+
+        function changefontsize(){
+            var selectedsize= document.getElementById("sizeselect").value;
+            document.body.style.fontSize= selectedsize;
+        }
+        function changefontstyle(){
+            var selectedFont= document.getElementById("fontselect").value;
+            document.body.style.fontFamily= selectedFont;
+        }
+        function changebg(){
+            var color= document.getElementById("bgcolor").value;
+            document.getElementById("outerContainer").style.backgroundColor= color;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html>   
+   <head>
+      <title>Form Validation</title>      
+      <script type = "text/javascript">
+        <!--
+           // Form validation code will come here.
+           var flag=true;
+           function validate() {           
+              if( document.myForm.Name.value == "" ) {
+                 alert( "Please provide your name!" );
+                 document.myForm.Name.focus() ;
+                 flag=false;
+                 return flag;
+              }
+              if( document.myForm.EMail.value == "" ) {              
+                 alert( "Please provide your Email!" );
+                 document.myForm.EMail.focus() ;
+                 flag=false;
+                 return flag;
+              }
+              if( document.myForm.Zip.value == "" || isNaN( document.myForm.Zip.value ) ||
+                 document.myForm.Zip.value.length != 5 ) {                   
+                 alert( "Please provide a zip in the format #####." );
+                 document.myForm.Zip.focus() ;
+                 flag=false;
+                 return flag;
+              }
+              if( document.myForm.Country.value == "-1" ) {
+                 alert( "Please provide your country!" );
+                 flag=false;
+                 return flag;
+              }
+              if(flag){
+               //alert("HI");               
+               if(!validateEmailFormat()){
+                  alert("Email should include @ symbol");
+                  flag=false;
+                  return flag;
+               }
+               else{
+                  document.myForm.action=submitForm();
+               }
+               
+               return true;
+              }
+              //return flag;
+           }
+
+           function validateEmailFormat(){
+            var email = document.myForm.EMail.value;
+            if(document.myForm.EMail.value == ""){
+                  alert( "Please provide your Email!" );
+                  document.myForm.EMail.focus() ;
+                  flag=false;
+                  return flag;
+            }
+            //alert(email);
+            if(!email.includes("@")){
+                  //alert("Email should include @ symbol");
+                  //document.getElementById('EMail').focus() = true;
+                  document.myForm.EMail.focus() ;
+                  //alert("HERE");
+                  return false;
+            }
+            return true;
+           }
+           
+        //-->
+
+        function submitForm(){
+         var txt;
+         var details = "Mr."+document.myForm.Name.value+".Please confrim your Email "+document.myForm.EMail.value;
+         if (confirm(details)) {
+                        txt = "Thank you";
+            }
+         else {
+                        txt = "You pressed Cancel!";
+            }
+            document.getElementById("output").innerHTML=txt;         
+      }
+     </script>    
+   </head>
+   
+   <body>
+      <form name = "myForm" onsubmit = "return(validate());">
+         <table cellspacing = "2" cellpadding = "2" border = "1">
+            
+            <tr>
+               <td align = "right">Name</td>
+               <td><input type = "text" name = "Name" /></td>
+            </tr>
+            
+            <tr>
+               <td align = "right">EMail</td>
+               <td><input type = "text" id="EMail" name = "EMail" onblur="validateEmailFormat()"/>
+                  <!--<input type = "text" id="EMail" name = "EMail"/>-->
+               </td>
+            </tr>
+            
+            <tr>
+               <td align = "right">Zip Code</td>
+               <td><input type = "text" name = "Zip" /></td>
+            </tr>
+            
+            <tr>
+               <td align = "right">Country</td>
+               <td>
+                  <select name = "Country">
+                     <option value = "-1" selected>[choose yours]</option>
+                     <option value = "1">USA</option>
+                     <option value = "2">UK</option>
+                     <option value = "3">INDIA</option>
+                  </select>
+               </td>
+            </tr>
+            
+            <tr>
+               <td align = "right"></td>
+               <td><input type = "submit" value = "Submit" /></td>
+            </tr>
+            
+         </table>
+      </form>      
+      <div id="output"></div>
+   </body>
+</html>

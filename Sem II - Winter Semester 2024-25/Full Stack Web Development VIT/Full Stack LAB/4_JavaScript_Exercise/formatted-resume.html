@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Resume Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-section, .resume-section {
+            flex: 1;
+            padding: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .resume-section {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 880px;
+        }
+
+        .resume-section h3 {
+            color: #007bff;
+        }
+
+        .resume-section p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h2>Enter Your Details</h2>
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+
+            <label for="education">Academic Details:</label>
+            <textarea id="education" rows="3" placeholder="Add your academic qualifications"></textarea>
+
+            <label for="certifications">Certifications:</label>
+            <textarea id="certifications" rows="3" placeholder="Add certifications (if any)"></textarea>
+
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" rows="3" placeholder="Add your work experience"></textarea>
+
+            <label for="skills">Skills:</label>
+            <textarea id="skills" rows="3" placeholder="List your skills"></textarea>
+
+            <label for="languages">Languages Known:</label>
+            <textarea id="languages" rows="3" placeholder="List the languages you know"></textarea>
+
+            <button onclick="generateResume()">Generate Resume</button>
+        </div>
+
+        <div class="resume-section" id="resume">
+            <h2>Formatted Resume</h2>
+        </div>
+    </div>
+
+    <script>
+        function generateResume() {
+            const name = document.getElementById('name').value.toUpperCase();
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const education = document.getElementById('education').value;
+            const certifications = document.getElementById('certifications').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+            const languages = document.getElementById('languages').value;
+
+            if (!name || !email || !phone || !education || !experience || !skills) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+
+            const resume = `
+                <h3>${name}</h3>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <hr>
+                <h3>Academic Details</h3>
+                <p>${education.replace(/\n/g, '<br>')}</p>
+                <hr>
+                <h3>Certifications</h3>
+                <p>${certifications.replace(/\n/g, '<br>')}</p>
+                <hr>
+                <h3>Work Experience</h3>
+                <p>${experience.replace(/\n/g, '<br>')}</p>
+                <hr>
+                <h3>Skills</h3>
+                <p>${skills.replace(/\n/g, '<br>')}</p>
+                <hr>
+                <h3>Languages Known</h3>
+                <p>${languages.replace(/\n/g, '<br>')}</p>
+            `;
+
+            document.getElementById('resume').innerHTML = resume;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body onload="displayDoc()">
+<script>
+   function displayDoc() {
+      // Creating XMLHttpRequest object
+      var myObj = new XMLHttpRequest();
+      // Creating a callback function      
+      myObj.onreadystatechange = function() {
+         console.log("MYOBJ"+myObj);
+         document.getElementById("readystates").innerHTML = this.readyState;
+         document.getElementById("sample").innerHTML = this.status;
+         if (this.readyState == 4 && this.status == 200) { 
+           document.getElementById("sample").innerHTML += this.responseText;
+           var jsonObj = JSON.parse(myObj.responseText);
+           //let responseData = myObj.response.json();
+           //var jsonObj = JSON.stringify(myObj.responseText);
+           console.log("RESPONSE"+jsonObj);
+           console.log("jsON:USERID="+jsonObj.userId);
+           console.log("jsON-TITLE="+jsonObj.title);
+           console.log("jsON-TITLE="+jsonObj.body);
+         }else{
+            console.log("Error Found")
+         }
+      };
+      // Open the given file
+      //myObj.open("GET", "https://jsonplaceholder.typicode.com/todos", true);//correct
+      //myObj.open("GET", "https://jsonplaceholder.typicode.com/users",true);
+      //myObj.open("GET", "https://api.github.com/users/mralexgray/repos",true);
+      //myObj.open("GET", "https://jsonplaceholder.typicode.com/posts",true);
+      myObj.open("GET", "https://jsonplaceholder.typicode.com/posts/1",true);
+      // Sending the request to the server
+      myObj.send();
+   }
+</script>
+<div id="readystates">
+   
+</div>
+<div id="sample">
+   <!--<h2>Getting Data</h2>
+   <p>Please click on the button to fetch data</p>
+   <button type="button" onclick="displayDoc()">Click Me</button>   -->
+</div>
+</body>
+</html>

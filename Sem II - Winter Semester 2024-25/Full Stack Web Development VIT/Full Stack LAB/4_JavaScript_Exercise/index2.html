@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Display Form</title>
+    <style>
+        body{
+            background-color: rgb(208, 200, 253);
+            padding: 5px 0 0 30px;
+            font-size: large;
+        }
+        input{
+            width: 300px;
+            padding: 8px;
+            margin-left: 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+            border-color: gray;
+        }
+        label{
+            font-size: 20px;
+        }
+        input:hover{
+            border-color: black;
+        }
+        button{
+            margin-left: 20px;
+            padding: 10px;
+            width: 150px;
+            border-radius: 8px;
+            color: #7b55e6;
+            font-weight: bold;
+            background-color: rgb(233, 245, 241);
+        }
+        button:hover{
+            background-color: rgb(105, 240, 105);
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function displayMessage() {
+            var message = document.getElementById("userTxt").value;
+            document.getElementById("header").innerText = message;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="header">Your message will appear here</h1>
+    <form>
+        <label for="userTxt">Enter your message:</label>
+        <input type="text" id="userTxt" name="userTxt">
+        <button type="button" onclick="displayMessage()">Submit</button>
+    </form>
+</body>
+</html>

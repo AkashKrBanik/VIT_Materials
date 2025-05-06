@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        table{
+            width: 80%;
+            margin-left: 60px;
+            
+        }
+        table,tr,th,td{
+            padding: 8px;
+            border: 1px white solid;
+            border-collapse: collapse;
+        }
+        table tbody{
+            text-align: left;
+        }
+
+    </style>
+
+</head>
+<body>
+    <center><h1>AKB jQUERY</h1></center>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <td>Last Name</td>
+                <th>City</th>
+                <th>State</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Mannix</td>
+                <td>Bolton</td>
+                <td>Merizo</td>
+                <td>Michigan</td>
+            </tr>
+            <tr>
+                <td>Suki</td>
+                <td>King</td>
+                <td>Fairmont</td>
+                <td>Oklahoma</td>
+            </tr>
+            <tr>
+                <td>Shelby</td>
+                <td>English</td>
+                <td>Durham</td>
+                <td>Arkansaa</td>
+            </tr>
+            <tr>
+                <td>Portia</td>
+                <td>Burns</td>
+                <td>Princeton</td>
+                <td>Rhode Island</td>
+            </tr>
+            <tr>
+                <td>Dacey</td>
+                <td>Younf</td>
+                <td>Covina</td>
+                <td>South Carolina</td>
+            </tr>
+            <tr>
+                <td>Clark</td>
+                <td>Reyes</td>
+                <td>Grand Rapids</td>
+                <td>New Jersey</td>
+            </tr>
+            <tr>
+                <td>Maris</td>
+                <td>Decker</td>
+                <td>Sierra Madre</td>
+                <td>Georgia</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function(){
+            $("tr:odd").css("background-color","red").css("color","White");
+            $("tr:even").css("background-color","lightgreen").css("color","black");
+            $("thead").css("font-weight","900").css("text-align","center");
+            $("table").css("border","3px red dashed");
+        });
+    </script>
+    
+</body>
+</html>

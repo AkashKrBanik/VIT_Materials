@@ -1,0 +1,47 @@
+[ Lynis 3.x.x ]
+
+Usage: lynis [parameters]
+
+Available parameters:
+
+  audit system               - Start the system audit
+  audit dockerfile           - Scan Dockerfile (experimental)
+  audit file <filename>      - Audit specific file
+  audit docker <container>   - Scan Docker container (experimental)
+  show version               - Display Lynis version
+  show help                  - Show help (this screen)
+  show settings              - Show system and scan settings
+  show commands              - Show available Lynis commands
+  show plugins               - Show available plugins
+  show profiles              - Show available profiles
+  show tests                 - Show all available tests
+  show test <test-ID>        - Show information about specific test-ID
+  generate report            - Create report from data directory
+
+  --auditor <name>           - Name of auditor (e.g. "Alice Smith")
+  --checkall                 - Perform all tests (same as audit system)
+  --cronjob                  - Enable cronjob mode (no colors, auto-answer)
+  --debug                    - Enable debug mode
+  --help                     - Show this help
+  --include <file>           - Include additional profile file
+  --logfile <file>           - Write log to specific file
+  --nocolors                 - Don’t use colors in output
+  --profile <file>           - Define profile to use
+  --quiet                    - Don't show output on screen
+  --quick                    - Skip slower tests (faster execution)
+  --report-file <file>       - Specify custom report file
+  --reverse-colors           - Use dark background-friendly colors
+  --tests <test-ID1,test-ID2>  - Run specific test(s)
+  --tests-from-group <group> - Run tests from specific group(s)
+  --upload                   - Upload data to Lynis Enterprise
+  --version                  - Show version and exit
+  --view-manpage             - Show man page for Lynis
+
+Example usage:
+
+  ./lynis audit system --quick
+  ./lynis audit system --profile myprofile.prf
+  ./lynis audit system --tests-from-group malware,authentication
+  ./lynis audit file /etc/mycustomconfig.conf
+
+For more information, visit: https://cisofy.com

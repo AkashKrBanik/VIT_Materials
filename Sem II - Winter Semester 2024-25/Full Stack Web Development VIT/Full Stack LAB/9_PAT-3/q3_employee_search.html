@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="employeeApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Salary Search</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    table { border-collapse: collapse; width: 70%; margin-top: 15px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+    input { margin-right: 10px; padding: 5px; }
+  </style>
+</head>
+<body ng-controller="EmployeeController">
+
+  <h2>🏢 Employee List with Salary Search</h2>
+
+  <div>
+    <input type="text" ng-model="searchName" placeholder="Search by Name">
+    <input type="number" ng-model="searchSalary" placeholder="Search by Salary">
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Emp ID</th>
+        <th>Name</th>
+        <th>Salary (₹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="employee in employees | filter:filterByNameAndSalary">
+        <td>{{ employee.empId }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.salary }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    var app = angular.module('employeeApp', []);
+
+    app.controller('EmployeeController', function($scope) {
+      // Predefined employee data
+      $scope.employees = [
+        { empId: 'E101', name: 'Rahul Mehta', salary: 50000 },
+        { empId: 'E102', name: 'Sneha Sharma', salary: 65000 },
+        { empId: 'E103', name: 'Arjun Rao', salary: 60000 },
+        { empId: 'E104', name: 'Pooja Iyer', salary: 55000 },
+        { empId: 'E105', name: 'Ankit Verma', salary: 70000 }
+      ];
+
+      // Custom filter function
+      $scope.filterByNameAndSalary = function(employee) {
+        var nameMatch = !$scope.searchName || employee.name.toLowerCase().includes($scope.searchName.toLowerCase());
+        var salaryMatch = !$scope.searchSalary || employee.salary == $scope.searchSalary;
+        return nameMatch && salaryMatch;
+      };
+    });
+  </script>
+
+</body>
+</html>

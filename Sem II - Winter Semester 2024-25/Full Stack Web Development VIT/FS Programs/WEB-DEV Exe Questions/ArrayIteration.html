@@ -1,0 +1,43 @@
+<html>
+   <head>
+      <script type = "text/javascript">
+    
+let age = [4, 5, 6];
+var name = ["Sam","Ravi","Krish"];
+const cars = ["SUZUKI", "Volvo", "BMW"];
+
+var serial=['a','b','c'];
+var op="";
+var Student ={name:"Arun",regno:"21BIT0001", cgpa:9.2}; 
+
+function iterateArray(){ 
+    document.getElementById("output").innerHTML="Length of each array<br>"; 
+    document.getElementById("output").innerHTML+="Length(name)="+name.length+"<br>";
+    document.getElementById("output").innerHTML+="Length(age)="+age.length+"<br>";
+    document.getElementById("output").innerHTML+="Length(serial)="+serial.length+"<br>"; 
+    for (let i in age) {
+        op+="(<b>"+serial[i]+"</b>). <i>"+name[i]+" </i>is "+age[i]+" years old.<br>";
+     }
+     document.getElementById("output").innerHTML+=op;       
+    for (var k=0;k<name.length;k++) {
+      document.getElementById("output").innerHTML+=name[k]+"***<br>";    
+   }
+   for (var k=0;k<cars.length;k++) {
+      document.getElementById("output").innerHTML+=cars[k]+"***<br>";    
+   }
+   for(i in Student){
+      alert(Student[i]); // this will alert value one by one.
+   }
+   
+
+   document.getElementById("output").innerHTML+=name[0]+"<br>";    
+   document.getElementById("output").innerHTML+=name[1]+"<br>";    
+   document.getElementById("output").innerHTML+=name[2]+"<br>";    
+}
+</script>
+<body onload="iterateArray()">
+   <body>
+   <b>Array Operations</b> 
+   <div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+
+<html>
+   <head>
+      <script type = "text/javascript">
+        var today_1 = new Date()
+        var today_2=new Date().toDateString();
+        
+
+        
+      function display(){
+            document.getElementById("output").innerHTML=today_1+"<br>";
+            document.getElementById("output").innerHTML+=today_2;
+            let date1 = new Date("01/01/2024");//console.log(date1.getTime());
+            let date2 = new Date("02/02/2024");//console.log(date2.getTime());
+            let timeDiff= date2.getTime() - date1.getTime();
+            //console.log("Time Diff"+timeDiff);
+            let daysDiff = Math.round(timeDiff / (1000 * 3600 * 24));
+            console.log("Total number of days between dates:\n" +date1.toDateString() + " and " +date2.toDateString() + " is: " 
+            + daysDiff + " days");
+      }
+    
+</script>
+<body onload="display()">
+   <body>
+   <b>Books</b> 
+   <div id="output"></div>
+   <div id="searchinput">
+    <form method ="get">
+     <label for="capacity">Enter the capacity</label>
+     <input type="text" id="capacity" name="capacity" value="">
+     <br>
+   
+     <input name="buttonExecute" onclick="searchCars(document.getElementById('capacity').value)" 
+                 type="button" value="Search" />
+     
+    </form>  
+    <div id="searchoutput"></div>
+
+</div>
+
+</body>
+</html>
